@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "users/", to: "auth#index"
-  post "signup/", to: "auth#signup"
+
+  match "signup", to: "auth#signup", via: :post
+  match "signup", to: "application#method_not_allowed", via: :all
+
   post "login/", to: "auth#login"
+  post "refresh/", to: "auth#refresh"
   # Defines the root path route ("/")
   # root "posts#index"
 end
