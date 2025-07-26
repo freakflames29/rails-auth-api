@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "user/userInfo"
   get "auth/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "users/", to: "auth#index"
+  get "users/:id", to: "user#userInfo"
 
   match "signup", to: "auth#signup", via: :post
   match "signup", to: "application#method_not_allowed", via: :all

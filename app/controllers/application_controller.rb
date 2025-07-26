@@ -57,7 +57,7 @@ class ApplicationController < ActionController::API
     }
     r_payload = {
       user_id: user.id,
-      exp: 30.minutes.from_now.to_i,
+      exp: 500.minutes.from_now.to_i,
       purpose: "refresh"
     }
 
@@ -68,6 +68,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_user!
+
     render json: { msg: "Authentication credentials are required" }, status: :unauthorized unless current_user
   end
 

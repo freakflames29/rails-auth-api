@@ -6,12 +6,15 @@ class AuthController < ApplicationController
     render json: @users.as_json(only: [:id, :username])
   end
 
+
+
+
   def refresh
     begin
       token = params[:refresh_token]
       user = User.find_by(refresh_token_digest: token)
       if user
-        # puts "The Refrsh token user >>>>>>>>>>#{user.inspect}"
+        # puts "The Refresh token user >>>>>>>>>>#{user.inspect}"
         newToken = generate_token(user)
 
         user.update!(refresh_token_digest: newToken[:refresh_token])

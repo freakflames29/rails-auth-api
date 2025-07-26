@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_20_133116) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_26_133915) do
+  create_table "todos", force: :cascade do |t|
+    t.string "task"
+    t.string "status"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -18,4 +27,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_20_133116) do
     t.datetime "updated_at", null: false
     t.string "refresh_token_digest"
   end
+
+  add_foreign_key "todos", "users"
 end
